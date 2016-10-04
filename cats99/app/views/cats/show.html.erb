@@ -18,6 +18,12 @@
     <td><%= "#{@cat.description}" %></td>
   </tr>
 
+
 </table>
+
+<h2>Rentals</h2>
+<% @cat.rentals.order(:start_date).each do |rental| %>
+<p> Start Date: <%= "#{rental.start_date}"  %> End Date: <%= "#{rental.end_date}" %> </p>
+<% end %>
 
 <%= button_to "Edit Cat", edit_cat_url, method: :get %>

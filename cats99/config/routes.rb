@@ -54,9 +54,8 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
 
-  resources :cats, only: [:index, :show, :create, :new, :update, :edit] do
-    resources :cat_rental_requests, only: [:new,:create]
-  end
+  resources :cats, only: [:index, :show, :create, :new, :update, :edit]
+  resources :cat_rental_requests, only: [:new,:create]
 
   root to: "cats#index"
 end

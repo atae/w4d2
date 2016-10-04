@@ -1,44 +1,25 @@
-<!-- <% _action = @cat.name == "" ? cats_url : cat_url(@cat.id) %>
-<% _verb = @cat.name == "" ? "POST" : "PATCH" %> -->
+<!-- <%# _action = @cat.name == "" ? cats_url : cat_url(@cat.id) %>
+<%# _verb = @cat.name == "" ? "POST" : "PATCH" %> -->
 
-<form action="<%= cat_cat_rental_requests_url%>" method="post">
-  <!-- <input type="hidden" name="_method" value="<%= _verb %>"> -->
+<form action="<%= cat_rental_requests_url%>" method="post">
+  <!-- <input type="hidden" name="_method" value="<%#= _verb %>"> -->
 
   <label for = "rental_cat">Cat</label>
   <select id = "rental_cat" name = "rental[cat_id]" >
-    <option selected = "selected" disabled>Select a Color </option>
-    <% Cat.colors.each do |color| %>
-      <% if cat.color == color %>
-        <option value="<%=color%>" selected = "selected">
-          <%= color %> </option>
-      <% else  %>
-        <option value="<%=color%>"><%= color %> </option>
-      <% end %>
+    <option selected = "selected" disabled>Select a Cat </option>
+    <% Cat.all.each do |cat| %>
+        <option value="<%=cat.id%>"><%= cat.name %> </option>
     <% end %>
   </select>
   <br>
 
-  <label for = "cat_sex">Sex</label>
+  <label for ="rental_start_date">Start Date</label>
+  <input type = "date" id = "rental_start_date" name = "rental[start_date]">
   <br>
-  <% if cat.sex.downcase == 'f'%>
-    <input type="radio" name="cat[sex]" id="cat_sex_female" value="f" checked="checked">
-    <label for="cat_sex_female">Female</label>
-    <br>
-    <input type="radio" name="cat[sex]" id="cat_sex_male" value="m">
-    <label for="cat_sex_male">Male</label>
-    <br>
-  <% else %>
-    <input type="radio" name="cat[sex]" id="cat_sex_female" value="f" >
-    <label for="cat_sex_female">Female</label>
-    <br>
-    <input type="radio" name="cat[sex]" id="cat_sex_male" value="m" checked="checked">
-    <label for="cat_sex_male">Male</label>
-    <br>
-  <% end %>
 
-  <label for="cat_description">Description</label>
+  <label for ="rental_end_date">End Date</label>
+  <input type = "date" id = "rental_end_date" name = "rental[end_date]">
   <br>
-  <textarea name="cat[description]" id="cat_description"><%=cat.description ? cat.description : nil%></textarea>
-  <br>
+
   <input type="submit" value="Submit">
 </form>
